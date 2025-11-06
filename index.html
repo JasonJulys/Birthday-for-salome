@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Birthday Gift</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&family=Pattaya:wght@300;400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
+            font-family: 'Quicksand', 'Segoe UI', Tahoma, sans-serif;
         }
         
         body {
@@ -42,6 +43,27 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 标题使用手写字体 */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ff6b6b;
+            margin-bottom: 20px;
+        }
+        
+        /* 正文字体 */
+        p {
+            font-family: 'Pattaya', sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+         /* 按钮和输入框字体 */
+         button, input {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
         }
         
         /* 第一页样式 */
@@ -148,11 +170,14 @@
         
         /* 第二页样式 */
         .password-container {
-            margin: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
         }
         
         .password-input {
-            width: 300px;
+            width: 400px;
             padding: 15px;
             font-size: 18px;
             border: 2px solid #ddd;
@@ -205,7 +230,19 @@
             border: 8px solid #ff6b6b;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
+
+        .birthday-photo-bg {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: 50% 30%; /* 精确控制显示区域 */
+            background-repeat: no-repeat;
+        }
         
+        .photo-container:hover {
+            transform: scale(1.05); /* 鼠标悬停时轻微放大 */
+        }
+
         .photo-placeholder {
             width: 100%;
             height: 100%;
@@ -232,6 +269,20 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .birthday-video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 确保视频在移动设备上显示正常 */
+        @media (max-width: 600px) {
+            .video-container {
+                margin: 20px auto;
+                border-radius: 10px;
+            }
         }
         
         .video-placeholder {
@@ -319,16 +370,14 @@
             <div class="ribbon"></div>
             <div class="bow"></div>
         </div>
-        <button class="open-btn" id="openBtn">打开</button>
+        <button class="open-btn" id="openBtn">Open</button>
     </div>
     
     <!-- 第二页：密码输入 -->
     <div id="page2" class="page">
-        <h1>Password Needed</h1>
-        <p>Please input the name of your favorate guy in HK</p>
+        <h1>Password Required</h1>
         <div class="password-container">
-            <input type="text" class="password-input" id="passwordInput" placeholder="Please input passowrd">
-            <p class="hint">Hint：start with a "J"</p>
+            <input type="text" class="password-input" id="passwordInput" placeholder="Hint: A girl with dark hair and golden smile">
             <button class="submit-btn" id="submitBtn">Submit</button>
             <p class="error-message" id="errorMsg">Humm, you really don't know?</p>
         </div>
@@ -336,22 +385,22 @@
     
     <!-- 第三页：祝福页面 -->
     <div id="page3" class="page">
-        <h1>Happy Birthday！</h1>
+        <h1>Happy Birthday:）</h1>
         <div class="photo-container">
-            <div class="photo-placeholder">
-                她的照片将在这里显示
-            </div>
+            <div class="birthday-photo-bg" style="background-image: url('assets/salome.png');"></div>
         </div>
         <div class="message">
-            <p>亲爱的 [她的名字]，</p>
-            <p>在这个特别的日子里，我想告诉你，你是我生命中最美好的礼物。你的笑容点亮了我的世界，你的善良温暖了我的心房。</p>
-            <p>愿你的生日充满欢乐和惊喜，愿你的每一天都像今天一样特别。希望这个小小的惊喜能给你带来一丝快乐。</p>
-            <p>永远爱你的人 <span class="heart">❤</span></p>
+            <p>Dear Salome，</p>
+            <p>I just want to wish you happy birthday, despite the unsettled and unclear future,</p>
+            <p>it's also important to just chill down and enjoy the moment.</p>
+            <p>I wish you to have a busy but wonderful life, to explore more and get what you deserve.</p>
+            <p>I wishi you to have good health both physically and mentally. take care of your tummy, and when you feel down, you can always talk with your family and friends, may you feel supported and confident all the time.</p>
+            <p>Best wishes, Jason</p>
         </div>
         <div class="video-container">
-            <div class="video-placeholder">
-                我为你录制的视频将在这里播放
-            </div>
+            <video class="birthday-video" controls controlsList="nodownload">
+                <source src="assets/video.mp4" type="video/mp4">
+            </video>
         </div>
     </div>
 
@@ -372,7 +421,7 @@
             const errorMsg = document.getElementById('errorMsg');
             
             // 这里假设密码是你的名字，例如 "John"
-            if (password === "Jason") {
+            if (password === "Salome") {
                 document.getElementById('page2').classList.remove('active');
                 document.getElementById('page3').classList.add('active');
             } else {
